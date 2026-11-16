@@ -26,6 +26,7 @@ dev = [
     "pytest>=7.0",
     "ruff>=0.6",
     "coverage>=7.0",
+    "import-linter>=2.15",
     "ty==0.0.84",
 ]
 
@@ -78,3 +79,50 @@ error-on-warning = false
 source = ["kit_carriers"]
 branch = true
 omit = ["*/tests/*"]
+
+[tool.coverage.report]
+# Phase-1 measurement (audit P12-N2): 89% total branch coverage over
+# the package-bound suite — om.py's residual misses are the
+# compile/codegen paths that get their heavy exercise through
+# graphopt's suite via the git dep.  Floor set at the measurement
+# rounded down; tighten, never lower (ratchet convention, same as
+# kit-onnx/discoverykit/gamekit/eqsat).
+fail_under = 89
+show_missing = true
+exclude_also = [
+    "if __name__ == ['\"]__main__['\"]:",
+    "if TYPE_CHECKING:",
+    "def __repr__",
+    "raise NotImplementedError",
+    "@overload",
+    "return NotImplemented",
+]
+
+# import-linter: kit_carriers binds stdlib + torch + mlopt-core +
+# mlopt-orchestrator + mlopt-torch (+ mlopt-dtypes transitively) —
+# the declared dep closure.  Everything else in the mlopt family is
+# forbidden: the sibling backends (kit_onnx, mlopt_cuda,
+# mlopt_host_tensor), the domain/discovery/game layers
+# (mlopt_discovery/discoverykit, gamekit, benchkit), and the optional
+# native engine.  The reverse edge (mlopt_torch → kit_carriers)
+# stays undeclared and lazy — a declared cycle is not installable —
+# and lives in graphopt's own contracts.  ``include_external_packages``
+# makes the torch bind visible to the contract.
+[tool.importlinter]
+root_packages = ["kit_carriers"]
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "kit_carriers binds only its declared dep closure"
+type = "forbidden"
+source_modules = ["kit_carriers"]
+forbidden_modules = [
+    "kit_onnx",
+    "mlopt_cuda",
+    "mlopt_host_tensor",
+    "mlopt_discovery",
+    "discoverykit",
+    "gamekit",
+    "benchkit",
+    "mlopt_native",
+]

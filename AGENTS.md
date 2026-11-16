@@ -68,7 +68,22 @@ uv sync --group dev
 .venv/bin/ruff check src
 .venv/bin/ruff format --check src
 .venv/bin/ty check
+.venv/bin/lint-imports
+coverage run -m pytest tests/ -q && coverage report -m   # floor in pyproject
 ```
+
+- Coverage floor is `fail_under = 89` in `[tool.coverage.report]`
+  (measured 89% branch coverage on the package-bound suite —
+  `om.py`'s residual misses are the compile/codegen paths exercised
+  through graphopt's suite via the git dep).  Tighten, never lower.
+- The declared-dep-closure layering is enforced statically by the
+  import-linter `forbidden` contract: `kit_carriers` must not import
+  `kit_onnx` / `mlopt_cuda` / `mlopt_host_tensor` /
+  `mlopt_discovery`/`discoverykit` / `gamekit` / `benchkit` /
+  `mlopt_native` — its binds stay inside stdlib + torch +
+  `mlopt_core`/`mlopt_orchestrator`/`mlopt_torch` (+ `mlopt_dtypes`
+  transitively).  The reverse edge (`mlopt_torch` → `kit_carriers`)
+  stays undeclared and lazy by contract above — do not add the dep.
 
 <!-- myco:agent-awareness -->
 
