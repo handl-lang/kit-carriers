@@ -32,7 +32,6 @@ CARRIER_OPS = (
     "parl",
     "eye",
     "cswap",
-    "inv",
     # kit_carriers.xcarrier
     "affd_a",
     "affd_b",
@@ -52,8 +51,12 @@ CARRIER_OPS = (
 )
 
 #: Base ops — the ``_CORE_TORCH_BINDINGS`` literal, including the
-#: aff/om/affd carrier primitives that ship in core.
+#: aff/om/affd carrier primitives that ship in core.  ``inv`` joined
+#: core in kit-torch (P3 Step D-1e — bound natively so the op lowers
+#: with kit_carriers absent); the trace carrier still re-binds the
+#: same ``torch.linalg.inv`` under its own table.
 CORE_OPS = (
+    "inv",
     "matmul",
     "add",
     "mul",
@@ -184,16 +187,18 @@ class TestCustomTableLowering:
 
         tbl = OpTable.core().register(xc)
         assert "trace" not in tbl.torch_bindings
+        assert "bdiag" not in tbl.torch_bindings
         x = _var("x", (4, 4))
+        y = _var("y", (4, 4))
         ir = IR(
-            root=Op.make("inv", x),
-            inputs=[x],
-            input_names={"x"},
+            root=Op.make("bdiag", x, y),
+            inputs=[x, y],
+            input_names={"x", "y"},
             params={},
         )
         mod = IRModule(ir, ops=tbl)
         with pytest.raises(ValueError, match="No torch binding"):
-            mod(_rand(4, 4))
+            mod(_rand(4, 4), _rand(4, 4))
 
     def test_removed_binding_fails_cleanly(self):
         """Deleting a binding from a custom table surfaces the
