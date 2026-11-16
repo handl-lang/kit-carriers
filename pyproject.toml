@@ -21,7 +21,7 @@ dev = [
     # [tool.uv.sources] — dep sources are honored transitively and no
     # single pin fits all consumers, so this repo's own dev env binds it
     # here as a direct git dep instead of a [tool.uv.sources] entry.
-    "kit-torch @ git+https://github.com/handl-lang/kit-torch.git@v0.1.5",
+    "kit-torch @ git+https://github.com/handl-lang/kit-torch.git@v0.1.6",
     "pytest>=7.0",
     "ruff>=0.6",
     "coverage>=7.0",
@@ -33,9 +33,9 @@ dev = [
 # `kit-carriers` resolve `mlopt-*` through their own `[tool.uv.sources]`
 # (uv honours sources only at the workspace root).
 [tool.uv.sources]
-mlopt-core = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-core", tag = "v0.1.12" }
-mlopt-orchestrator = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-orchestrator", tag = "v0.1.12" }
-mlopt-dtypes = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-dtypes", tag = "v0.1.12" }
+mlopt-core = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-core", tag = "v0.1.13" }
+mlopt-orchestrator = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-orchestrator", tag = "v0.1.13" }
+mlopt-dtypes = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-dtypes", tag = "v0.1.13" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
