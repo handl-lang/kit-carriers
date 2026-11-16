@@ -151,14 +151,33 @@ def test_composer_joint_rules():
     from mlopt_orchestrator.optimize import default_rules
     from kit_torch.composer import _JOINT_DEFAULT, _joint_rules
 
-    # the pipeline default widens to the layout-inclusive set.
+    # the pipeline default widens to the joint-safe surface.
     assert _joint_rules(None) is _JOINT_DEFAULT
     assert _joint_rules(default_rules()) is _JOINT_DEFAULT
     # a caller-chosen set is honoured as-is.
     assert _joint_rules(laws.CATEGORICAL) is laws.CATEGORICAL
-    assert set(_JOINT_DEFAULT) >= set(laws.WITH_LAYOUT) - {
-        r for r in laws.WITH_LAYOUT if tags.SUBSUMED in r.tags
+    # kit-torch v0.1.5's joint-safe preset (fb44685a): WITH_LAYOUT minus
+    # SUBSUMED *and* minus the pointwise transpose_push_*/
+    # transpose_pull_* family — measured pure check-time cost, never a
+    # changed extraction (host project/reports/joint_safe_preset.md).
+    # The structural layout laws stay.  kit-torch's own
+    # test_compositional_pairs pins the same contract upstream.
+    pointwise = {
+        r.name
+        for r in laws.WITH_LAYOUT.rules
+        if tags.LAYOUT in r.tags
+        and r.name.startswith(("transpose_push_", "transpose_pull_"))
     }
+    assert pointwise  # the excluded family exists — real, not vacuous
+    names = {r.name for r in _JOINT_DEFAULT}
+    assert not (names & pointwise)
+    assert not any(tags.SUBSUMED in r.tags for r in _JOINT_DEFAULT)
+    structural = {
+        r.name
+        for r in laws.WITH_LAYOUT.rules
+        if tags.LAYOUT in r.tags
+    } - pointwise
+    assert structural and structural <= names
 
 
 # ---------------------------------------------------------------------------

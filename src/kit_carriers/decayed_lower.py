@@ -53,7 +53,7 @@ Usage::
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any
 
 import torch
 from kit_torch.executors import BatchedExecutorBase
@@ -427,21 +427,9 @@ class ChunkedDecayModule(BatchedExecutorBase, torch.nn.Module):
 
     def forward(self, *xs: torch.Tensor) -> Any:
         """Run the batched (or serial-fallback) forward pass."""
-        g = self._graph
-        if (
-            g is not None
-            and len(xs) == len(self._graph_inputs)
-            and all(
-                t.shape == b.shape
-                and t.dtype == b.dtype
-                and t.device == b.device
-                for t, b in zip(xs, self._graph_inputs, strict=True)
-            )
-        ):
-            for buf, t in zip(self._graph_inputs, xs, strict=True):
-                buf.copy_(t, non_blocking=True)
-            g.replay()
-            return cast(torch.Tensor, self._graph_out)
+        out = self._graph_replay(xs)
+        if out is not None:
+            return out
         return self._forward_impl(*xs)
 
     # -- eval helpers -------------------------------------------------
