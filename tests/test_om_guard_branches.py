@@ -17,10 +17,10 @@ fire whose result is evaluated against a serial fp64 reference.
 """
 
 import torch
-
-import kit_carriers.om as OM
 from mlopt_core import meta
 from mlopt_core.ir import Const, Op, TensorType, Var
+
+import kit_carriers.om as OM
 
 torch.manual_seed(0)
 

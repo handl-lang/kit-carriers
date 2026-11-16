@@ -17,9 +17,11 @@ The bandwidth-bound slice of the rewrite surface (see the audit in
 """
 
 import torch
+from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
 from mlopt_torch.torch_bridge import ir_to_torch_module
+
 from kit_carriers.decode_laws import (
     DECODE_LAWS,
     _check_cat_prefix,
@@ -30,7 +32,6 @@ from kit_carriers.decode_laws import (
     _derive_repeat_gather,
     _derive_scatter_end,
 )
-from mlopt_core.cost import flops_cost
 
 # ---------------------------------------------------------------------------
 #  helpers
@@ -646,6 +647,8 @@ def test_op_table_scope_limits():
 #  5. attn_sdpa_* — spelled attention -> sdpa (decode coverage)
 # ---------------------------------------------------------------------------
 
+from mlopt_core.ir import Const  # noqa: E402
+
 from kit_carriers.decode_laws import (  # noqa: E402
     ATTN_SDPA_LAWS,
     _attn_sdpa_rules,
@@ -657,7 +660,6 @@ from kit_carriers.decode_laws import (  # noqa: E402
     _pattern_vars,
     _spelled_sm,
 )
-from mlopt_core.ir import Const  # noqa: E402
 
 
 def _attn_term(
@@ -705,7 +707,7 @@ def _sdpa_in_class(eg, root):
 
 
 def test_attn_sdpa_family_size_and_names():
-    """8 rows: {mask,mul,plain}×{bare,drop} — the decode spelling set."""
+    """8 rows: {mask,mul,plain}x{bare,drop} — the decode spelling set."""
     names = [r.name for r in ATTN_SDPA_LAWS]
     assert names == [
         "attn_sdpa_mask_mul",
@@ -757,11 +759,7 @@ def test_attn_sdpa_all_rows_fire():
 def test_attn_sdpa_scale_lands_in_attr():
     """The mul-scale row mints ``scale=<s>`` on the sdpa member."""
     term = _attn_term(scale="mul", mask=False, drop=True)
-    eg, root = _run(term, rules=ATTN_SDPA_LAWS)
-    canon = eg.find(root)
-    sdpa_nodes = [
-        n for n in eg.get_class(canon).nodes if n.op == "sdpa"
-    ]
+    eg, _root = _run(term, rules=ATTN_SDPA_LAWS)
     # the root class itself may not hold sdpa (it's deeper); scan all
     found = []
     for cid in range(eg.n_classes):

@@ -14,14 +14,15 @@ cover the incremental decode regime: existing carrier + one new block
 import gc
 import math
 
+import mlopt_torch.torch_bridge as torch_bridge
 import pytest
 import torch
 import torch.nn.functional as F
-
-import kit_carriers.om_lower as om_lower
-import mlopt_torch.torch_bridge as torch_bridge
 from mlopt_core.ir import IR, Op, TensorType, Var
 from mlopt_torch.models import SwiGLU
+from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+
+import kit_carriers.om_lower as om_lower
 from kit_carriers.om_lower import (
     StreamingOMModule,
     om_apply_state,
@@ -31,7 +32,6 @@ from kit_carriers.om_lower import (
     to_batched_om_module,
     to_streaming_om_module,
 )
-from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
 
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 

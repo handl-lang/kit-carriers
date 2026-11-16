@@ -28,12 +28,12 @@ Covered here:
 """
 
 import torch
-
-from mlopt_core import meta
-from kit_carriers import om as OM
 from mlopt_core import laws as R
+from mlopt_core import meta
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import Op, TensorType, Var, op_repr
+
+from kit_carriers import om as OM
 
 
 def _T(*shape):

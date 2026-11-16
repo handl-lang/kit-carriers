@@ -23,17 +23,17 @@ Covered here:
 """
 
 import torch
-
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, TensorType, Var, op_repr
+from mlopt_torch.torch_bridge import _IR_TO_TORCH, ir_to_torch_module
+
 from kit_carriers.om import (
     CONCAT_BINARIZE,
     MATMUL_T_CONCAT,
     OM_LAWS,
     OM_SPLIT,
 )
-from mlopt_torch.torch_bridge import _IR_TO_TORCH, ir_to_torch_module
 
 # ---------------------------------------------------------------------------
 #  helpers

@@ -16,10 +16,11 @@ lowering edge paths that the main suites deliberately leave open:
 
 import torch
 import torch.nn.functional as F
-
-import kit_carriers.trace_lift as TL
 from mlopt_core.egraph import EClass, EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
+from mlopt_torch.torch_bridge import ir_to_torch_module
+
+import kit_carriers.trace_lift as TL
 from kit_carriers.om_lower import (
     _analyze_elem_group,
     _qk_parts,
@@ -39,7 +40,6 @@ from kit_carriers.scan_lower import (
     build_scan_plan,
     to_batched_scan_module,
 )
-from mlopt_torch.torch_bridge import ir_to_torch_module
 from kit_carriers.trace import (
     _check_collapse,
     _check_expand,

@@ -29,11 +29,10 @@ Complements tests/test_regime.py with the paths it never reaches:
 
 import types
 
+import mlopt_torch.calibrate as cal_mod
 import pytest
 import torch
 import torch.nn as nn
-
-import mlopt_torch.calibrate as cal_mod
 from mlopt_core.cost import (
     _INVALID_COST,
     flops_cost,
@@ -43,8 +42,6 @@ from mlopt_core.cost import (
 from mlopt_core.egraph import EGraph, verify_certificate
 from mlopt_core.ir import IR, Op, TensorType, Var, op_repr
 from mlopt_torch.models.ssm import DiagonalSSM
-from kit_carriers.om import OM_LAWS
-from kit_carriers.om_lower import is_om_apply_term
 from mlopt_torch.regime import (
     EXECUTORS,
     ExecutorSpec,
@@ -63,8 +60,11 @@ from mlopt_torch.regime import (
     regime_dispatch,
     regime_frontier,
 )
-from kit_carriers.scan_lower import is_scan_apply_term
 from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+
+from kit_carriers.om import OM_LAWS
+from kit_carriers.om_lower import is_om_apply_term
+from kit_carriers.scan_lower import is_scan_apply_term
 
 
 def _T(*shape):

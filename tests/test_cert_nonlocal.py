@@ -32,8 +32,6 @@ What these tests prove:
 import pytest
 import torch
 
-import kit_carriers.trace as _cat_trace  # noqa: F401  torch bindings
-
 # (trace/parl/eye/concat)
 from mlopt_core.egraph import (
     CertificateVerificationError,
@@ -45,6 +43,8 @@ from mlopt_core.egraph import (
 )
 from mlopt_core.ir import IR, Op, Param, TensorType, Var, op_repr
 from mlopt_torch.torch_bridge import ir_to_torch_module
+
+import kit_carriers.trace as _cat_trace  # noqa: F401  torch bindings
 from kit_carriers.trace_lift import lift_scan_to_trace
 
 

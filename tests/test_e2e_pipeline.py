@@ -5,29 +5,25 @@ lowering boundary, and compositional fallback.
 These exercise the pieces working *together* rather than any single
 component's internals."""
 
+import pytest
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph, verify_certificate
 from mlopt_core.ir import IR, Op, TensorType, Var
 from mlopt_core.laws import all_rules
+from mlopt_core.ops import OpTable
+from mlopt_orchestrator import Compositional, Optimizer
+from mlopt_torch.backend import TorchBackend
+from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+
 from kit_carriers.om_lower import (
     StreamingOMModule,
     om_apply_state,
     om_empty_state,
     om_step,
 )
-from mlopt_core.ops import OpTable
-
-from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
-from mlopt_orchestrator import Compositional, Optimizer
-
-
-from mlopt_torch.backend import TorchBackend
-
-import pytest
 
 pytestmark = pytest.mark.e2e  # boundary-purpose file: crosses an external engine boundary
 

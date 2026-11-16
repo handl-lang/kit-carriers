@@ -6,8 +6,8 @@ test_om_batched.py."""
 # ruff: noqa: RUF059, E741 — test-idiom unpacking
 
 import torch
-
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
+
 from kit_carriers.om_lower import (
     StreamingOMModule,
     _analyze_elem_group,
@@ -502,7 +502,6 @@ def test_batched_short_sequence_and_properties():
 
 def _export_silu():
     import torch.nn as nn
-
     from mlopt_torch.torch_bridge import export_to_ir
 
     torch.manual_seed(0)

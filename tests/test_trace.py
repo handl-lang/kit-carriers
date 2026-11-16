@@ -24,12 +24,12 @@ independent traces — channels that may be scheduled in parallel.
 
 import pytest
 import torch
-
-import kit_carriers.trace as cat_trace  # noqa: F401  (registers torch bindings)
 from mlopt_core.cost import count_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Const, Op, Param, TensorType, Var
 from mlopt_torch.torch_bridge import _IR_TO_TORCH, ir_to_torch_module
+
+import kit_carriers.trace as cat_trace  # noqa: F401  (registers torch bindings)
 from kit_carriers.trace import (
     TR_COLLAPSE,
     TR_EXPAND,

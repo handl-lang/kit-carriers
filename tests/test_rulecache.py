@@ -26,10 +26,8 @@ Covered here:
 import time
 
 import torch
-
-from mlopt_core import meta
-from kit_carriers import om as OM
 from mlopt_core import laws as R
+from mlopt_core import meta
 from mlopt_core.egraph import EGraph, Rewrite
 from mlopt_core.ir import Const, Op, TensorType, Var, op_repr
 from mlopt_core.rulecache import (
@@ -37,6 +35,8 @@ from mlopt_core.rulecache import (
     cache_key,
     synthesize_rules_cached,
 )
+
+from kit_carriers import om as OM
 
 
 def _T(*shape):

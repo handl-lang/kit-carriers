@@ -15,7 +15,6 @@ registration:
 
 import pytest
 import torch
-
 from mlopt_core.ir import IR, Op, TensorType, Var
 from mlopt_core.ops import OpTable
 from mlopt_torch.torch_bridge import (

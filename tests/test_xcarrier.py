@@ -50,12 +50,12 @@ reassociation error only.
 from __future__ import annotations
 
 import torch
-
-import kit_carriers.xcarrier as XC
 from mlopt_core import meta
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import Op, TensorType, Var
 from mlopt_torch.torch_bridge import _IR_TO_TORCH
+
+import kit_carriers.xcarrier as XC
 
 # ---------------------------------------------------------------------------
 #  helpers

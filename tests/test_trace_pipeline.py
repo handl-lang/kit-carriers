@@ -33,16 +33,13 @@ tolerance-lottery.
 
 import pytest
 import torch
-
-import kit_carriers.trace as cat_trace  # noqa: F401  (registers torch bindings)
-from mlopt_core import meta
 from mlopt_core import laws as R
+from mlopt_core import meta
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var, op_repr
 from mlopt_torch.models.hybrid import HybridBlock
 from mlopt_torch.models.ssm import DiagonalSSM
-from kit_carriers.om import OM_LAWS
 from mlopt_torch.regime import (
     CARRIER_LAWS,
     EXECUTORS,
@@ -53,6 +50,9 @@ from mlopt_torch.regime import (
     regime_frontier,
 )
 from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+
+import kit_carriers.trace as cat_trace  # noqa: F401  (registers torch bindings)
+from kit_carriers.om import OM_LAWS
 from kit_carriers.trace import TRACE_LAWS
 
 

@@ -10,22 +10,23 @@ same terms, the pad/mask/DAG-occurrence edges, the compiled path, and
 an end-to-end run on an egraph-extracted om term.
 """
 
-import kit_carriers.xcarrier  # noqa: F401 — omd_* torch bindings
 import pytest
 import torch
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
-from kit_carriers.om import OM_LAWS
-from kit_carriers.om_lower import build_om_plan, to_batched_om_module
-from kit_carriers.omd_lower import build_omd_plan
 from mlopt_torch.torch_bridge import ir_to_torch_module
+
+import kit_carriers.xcarrier  # noqa: F401 — omd_* torch bindings
+from kit_carriers.om import OM_LAWS
 from kit_carriers.om_fused import (
     fused_om_levels,
     fused_omd_levels,
     fused_omdm_levels,
     occurrence_slots,
 )
+from kit_carriers.om_lower import build_om_plan, to_batched_om_module
+from kit_carriers.omd_lower import build_omd_plan
 
 
 def _T(*shape):

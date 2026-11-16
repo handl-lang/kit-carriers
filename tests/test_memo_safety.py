@@ -14,8 +14,8 @@ results either way.
 """
 
 import torch
-
 from mlopt_core.ir import Const, Op, Param, TensorType, Var
+
 from kit_carriers.om_lower import _is_om_tree, build_om_plan
 from kit_carriers.omd_lower import _is_omd_tree, build_omd_plan
 

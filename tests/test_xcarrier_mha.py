@@ -42,11 +42,11 @@ Honest limits, exercised here as vetoes:
 from __future__ import annotations
 
 import torch
-
-import kit_carriers.xcarrier as XC
 from mlopt_core import meta
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import Op, TensorType, Var
+
+import kit_carriers.xcarrier as XC
 
 # ---------------------------------------------------------------------------
 #  helpers (same conventions as test_xcarrier.py)
@@ -541,7 +541,11 @@ def test_mha_omd_fires_and_is_exact():
     variant).  The extracted member evaluates fp64-exact."""
     from mlopt_core.ir import IR
     from mlopt_torch.regime import default_rules
-    from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+    from mlopt_torch.torch_bridge import (
+        export_to_ir,
+        ir_to_torch_module,
+    )
+
     from kit_carriers.xcarrier import (
         XC_LAWS,
         _elem_affine_options,
@@ -639,6 +643,7 @@ def test_mha_omd_value_member_is_viewed_apply():
     from mlopt_core.cost import _shape_of
     from mlopt_torch.regime import default_rules
     from mlopt_torch.torch_bridge import export_to_ir
+
     from kit_carriers.xcarrier import (
         XC_LAWS,
         _elem_affine_options,

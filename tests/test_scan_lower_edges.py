@@ -5,8 +5,9 @@ expand path.  CPU only; CUDA paths live in test_scan_batched.py."""
 # ruff: noqa: RUF059 — test-idiom unpacking
 
 import torch
-
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
+from mlopt_torch.torch_bridge import ir_to_torch_module
+
 from kit_carriers.scan_lower import (
     _fold_nested_apply,
     _is_aff_tree,
@@ -18,7 +19,6 @@ from kit_carriers.scan_lower import (
     is_scan_apply_term,
     to_batched_scan_module,
 )
-from mlopt_torch.torch_bridge import ir_to_torch_module
 
 
 def _T(*shape):

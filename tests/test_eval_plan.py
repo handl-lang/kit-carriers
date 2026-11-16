@@ -12,11 +12,11 @@ the recursive evaluator on a realistic term.
 
 import pytest
 import torch
-
-import kit_carriers.xcarrier  # noqa: F401 — carrier torch bindings
 from mlopt_core.ir import IR, Const, Op, Param, TensorType, Var
 from mlopt_core.ops import OpTable
 from mlopt_torch.torch_bridge import _IR_TO_TORCH, ir_to_torch_module
+
+import kit_carriers.xcarrier  # noqa: F401 — carrier torch bindings
 
 torch.manual_seed(0)
 
@@ -187,7 +187,7 @@ def test_plan_param_recovers_load_state_dict():
 
 
 # ---------------------------------------------------------------------------
-#  Call-shape branches (arity × attrs)
+#  Call-shape branches (arity x attrs)
 # ---------------------------------------------------------------------------
 
 

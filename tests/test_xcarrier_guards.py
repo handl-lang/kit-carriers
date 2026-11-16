@@ -17,12 +17,12 @@ always be produced by a well-typed minted term.
 """
 
 import torch
-
-import kit_carriers.xcarrier as XC
 from mlopt_core import meta
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import Const, Op, TensorType, Var
 from mlopt_core.typing import _shape_of
+
+import kit_carriers.xcarrier as XC
 
 torch.manual_seed(0)
 

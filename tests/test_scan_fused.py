@@ -12,16 +12,17 @@ and the routing invariants (``is_batched``/``n_levels``/``_plan``).
 import pytest
 import torch
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
-from kit_carriers.scan_lower import (
-    BatchedScanModule,
-    build_scan_plan,
-    to_batched_scan_module,
-)
 from mlopt_torch.torch_bridge import ir_to_torch_module
+
 from kit_carriers.scan_fused import (
     fused_dense_levels,
     fused_diag_levels,
     occurrence_slots,
+)
+from kit_carriers.scan_lower import (
+    BatchedScanModule,
+    build_scan_plan,
+    to_batched_scan_module,
 )
 
 

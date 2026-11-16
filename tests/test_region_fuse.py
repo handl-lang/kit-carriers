@@ -11,7 +11,6 @@ exercised on tiny CPU regions (inductor compile is seconds-scale, so
 compiled tests stay minimal and marked where slow).
 """
 
-import kit_carriers.xcarrier  # noqa: F401 — carrier torch bindings
 import torch
 from mlopt_core.ir import IR, Const, Op, Param, TensorType, Var
 from mlopt_torch import region_fuse as rf
@@ -25,6 +24,8 @@ from mlopt_torch.region_fuse import (
 )
 from mlopt_torch.runners import RegionFusionRunner
 from mlopt_torch.torch_bridge import ir_to_torch_module
+
+import kit_carriers.xcarrier  # noqa: F401 — carrier torch bindings
 
 torch.manual_seed(0)
 

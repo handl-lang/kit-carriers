@@ -1,6 +1,6 @@
 """Composable rule sets — plan 0009.
 
-Covers the ``RuleSet`` value (name-keyed +/−/& algebra, ``named`` /
+Covers the ``RuleSet`` value (name-keyed +/-/& algebra, ``named`` /
 ``tagged`` subsets, the ``priorities`` scheduling map), the tag
 assignments on the shipped rules, the named presets and their
 compositions, the orchestrator's ``rules`` resolution, and the
@@ -116,11 +116,12 @@ def test_carrier_package_tags():
 
 
 def test_default_rules_composes_carriers():
+    from mlopt_orchestrator import DEFAULT_RULES, default_rules
+
     from kit_carriers.decode_laws import DECODE_LAWS
     from kit_carriers.om import OM_LAWS
     from kit_carriers.trace import TRACE_LAWS
     from kit_carriers.xcarrier import XC_LAWS
-    from mlopt_orchestrator import DEFAULT_RULES, default_rules
 
     assert DEFAULT_RULES is default_rules()
     names = {r.name for r in DEFAULT_RULES}

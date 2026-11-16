@@ -13,13 +13,7 @@ Covers:
 
 import pytest
 import torch
-
 from mlopt_core import laws as R
-from mlopt_torch.calibrate import (
-    PROFILE_DIR_ENV,
-    TargetProfile,
-    save_profile,
-)
 from mlopt_core.cost import (
     flops_cost,
     launch_aware_cost,
@@ -28,9 +22,12 @@ from mlopt_core.cost import (
 )
 from mlopt_core.egraph import EGraph, verify_certificate
 from mlopt_core.ir import IR, Op, TensorType, Var, op_repr
+from mlopt_torch.calibrate import (
+    PROFILE_DIR_ENV,
+    TargetProfile,
+    save_profile,
+)
 from mlopt_torch.models.ssm import DiagonalSSM
-from kit_carriers.om import OM_LAWS
-from kit_carriers.om_lower import is_om_apply_term
 from mlopt_torch.regime import (
     EXECUTORS,
     Regime,
@@ -42,8 +39,11 @@ from mlopt_torch.regime import (
     regime_dispatch,
     regime_frontier,
 )
-from kit_carriers.scan_lower import is_scan_apply_term
 from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+
+from kit_carriers.om import OM_LAWS
+from kit_carriers.om_lower import is_om_apply_term
+from kit_carriers.scan_lower import is_scan_apply_term
 
 # ---------------------------------------------------------------------------
 # fixtures / helpers

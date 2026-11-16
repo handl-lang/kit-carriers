@@ -20,7 +20,7 @@ dev = [
     "pytest>=7.0",
     "ruff>=0.6",
     "coverage>=7.0",
-    "ty>=0.0.84",
+    "ty==0.0.84",
 ]
 
 # Substrate + torch-bridge pins for local dev — consumers that git-pin

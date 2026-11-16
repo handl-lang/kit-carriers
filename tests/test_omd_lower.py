@@ -19,14 +19,15 @@ import torch
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
+from mlopt_torch.regime import default_rules
+from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+
 from kit_carriers.omd_lower import (
     BatchedOmdModule,
     build_omd_plan,
     is_omd_apply_term,
     to_batched_omd_module,
 )
-from mlopt_torch.regime import default_rules
-from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
 from kit_carriers.trace_lift import lift_scan_to_trace
 from kit_carriers.xcarrier import (
     gather_apply_stack,

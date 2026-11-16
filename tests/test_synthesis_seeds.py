@@ -34,14 +34,14 @@ Covered here:
   it *can* satisfy still emits.
 """
 
-import torch
-
 import mlopt_torch  # noqa: F401 — registers the concrete-eval backend
-from mlopt_core import meta
-from kit_carriers import om as OM
+import torch
 from mlopt_core import laws as R
+from mlopt_core import meta
 from mlopt_core.egraph import EGraph, Rewrite
 from mlopt_core.ir import Const, Op, TensorType, Var, op_repr
+
+from kit_carriers import om as OM
 
 
 def _T(*shape):

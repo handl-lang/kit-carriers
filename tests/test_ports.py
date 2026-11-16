@@ -9,12 +9,6 @@ a ``CostFn``.
 
 import torch
 from mlopt_core.ir import IR, Op, TensorType, Var
-from kit_carriers.om_lower import (
-    StreamingOMModule,
-    to_batched_om_module,
-    to_streaming_om_module,
-)
-from kit_carriers.omd_lower import to_batched_omd_module
 from mlopt_core.ops import OpTable
 from mlopt_core.ports import (
     BatchedExecutor,
@@ -30,8 +24,15 @@ from mlopt_core.ports import (
     signature_conforms,
 )
 from mlopt_torch.report import VerifyReport, verify_equiv
-from kit_carriers.scan_lower import to_batched_scan_module
 from mlopt_torch.torch_bridge import _IR_TO_TORCH, IRModule
+
+from kit_carriers.om_lower import (
+    StreamingOMModule,
+    to_batched_om_module,
+    to_streaming_om_module,
+)
+from kit_carriers.omd_lower import to_batched_omd_module
+from kit_carriers.scan_lower import to_batched_scan_module
 
 # ---------------------------------------------------------------------------
 #  Fixtures — minimal real terms for each executor

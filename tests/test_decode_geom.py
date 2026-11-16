@@ -23,6 +23,11 @@ decline cases for each guard.
 
 import pytest
 import torch
+from mlopt_core.cost import flops_cost
+from mlopt_core.egraph import EGraph
+from mlopt_core.ir import IR, Op, Param, TensorType, Var
+from mlopt_torch.torch_bridge import ir_to_torch_module
+
 from kit_carriers.decode_geom import (
     DECODE_GEOM_LAWS,
     DECODE_GEOM_RULES,
@@ -57,10 +62,6 @@ from kit_carriers.decode_geom import (
     _derive_gather_stack_rev,
     _derive_narrow_merge,
 )
-from mlopt_core.cost import flops_cost
-from mlopt_core.egraph import EGraph
-from mlopt_core.ir import IR, Op, Param, TensorType, Var
-from mlopt_torch.torch_bridge import ir_to_torch_module
 
 # ---------------------------------------------------------------------------
 #  helpers (same protocol as test_decode_laws)
@@ -1307,9 +1308,10 @@ def test_decode_geom_ruleset_composition():
 
 def test_wired_into_carriers_and_default():
     """DECODE_GEOM_RULES composes into CARRIERS → pipeline default."""
-    import kit_carriers
     from mlopt_orchestrator.optimize import default_rules
     from mlopt_orchestrator.regime import default_rules as reg_rules
+
+    import kit_carriers
 
     carriers = kit_carriers.CARRIERS
     assert "cat_slice_merge" in carriers

@@ -9,9 +9,10 @@ exercised on real plans built via ``to_batched_*_module``.
 
 import pytest
 import torch
-
-from mlopt_torch.executors import BatchedExecutorBase
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
+from mlopt_torch.executors import BatchedExecutorBase
+from mlopt_torch.torch_bridge import ir_to_torch_module
+
 from kit_carriers.om_lower import BatchedOMModule, to_batched_om_module
 from kit_carriers.omd_lower import (
     BatchedOmdModule,
@@ -22,7 +23,6 @@ from kit_carriers.scan_lower import (
     BatchedScanModule,
     to_batched_scan_module,
 )
-from mlopt_torch.torch_bridge import ir_to_torch_module
 
 
 def _T(*shape):
