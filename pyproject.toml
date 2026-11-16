@@ -101,7 +101,7 @@ exclude_also = [
 # import-linter: kit_carriers binds stdlib + torch + mlopt-core +
 # mlopt-orchestrator + mlopt-torch (+ mlopt-dtypes transitively) —
 # the declared dep closure.  Everything else in the mlopt family is
-# forbidden: the sibling backends (kit_onnx, mlopt_cuda,
+# forbidden: the sibling backends (kit_onnx, kit_cuda,
 # mlopt_host_tensor), the domain/discovery/game layers
 # (mlopt_discovery/discoverykit, gamekit, benchkit), and the optional
 # native engine.  The reverse edge (mlopt_torch → kit_carriers)
@@ -118,7 +118,7 @@ type = "forbidden"
 source_modules = ["kit_carriers"]
 forbidden_modules = [
     "kit_onnx",
-    "mlopt_cuda",
+    "kit_cuda",
     "mlopt_host_tensor",
     "mlopt_discovery",
     "discoverykit",

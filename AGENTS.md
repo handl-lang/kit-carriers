@@ -36,7 +36,7 @@ dissolution; the `mlopt-*` → `kit-*` rename).  Python 3.13, torch +
   `kit_carriers` + `mlopt_core`/`mlopt_torch`/
   `mlopt_orchestrator`/`mlopt_dtypes` + torch).  Cross-stack
   integration tests (anything touching `mlopt_discovery`,
-  `mlopt_cuda`, `mlopt_host_tensor`, `kit_onnx`, gamekit, benchkit)
+  `kit_cuda`, `mlopt_host_tensor`, `kit_onnx`, gamekit, benchkit)
   stayed in graphopt and import `kit_carriers` as a git dep.
 
 ## Contracts
@@ -78,7 +78,7 @@ coverage run -m pytest tests/ -q && coverage report -m   # floor in pyproject
   through graphopt's suite via the git dep).  Tighten, never lower.
 - The declared-dep-closure layering is enforced statically by the
   import-linter `forbidden` contract: `kit_carriers` must not import
-  `kit_onnx` / `mlopt_cuda` / `mlopt_host_tensor` /
+  `kit_onnx` / `kit_cuda` / `mlopt_host_tensor` /
   `mlopt_discovery`/`discoverykit` / `gamekit` / `benchkit` /
   `mlopt_native` — its binds stay inside stdlib + torch +
   `mlopt_core`/`mlopt_orchestrator`/`mlopt_torch` (+ `mlopt_dtypes`
