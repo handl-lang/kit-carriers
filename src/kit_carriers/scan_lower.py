@@ -42,18 +42,18 @@ from __future__ import annotations
 from typing import Any, cast
 
 import torch
-from mlopt_core.ir import IR, Op, Param, Var
-from mlopt_core.typing import (
-    INVALID,
-    broadcast,
-    matmul_shape,
-)
 from kit_torch.executors import (
     BatchedExecutorBase,
     level_schedule,
     slot_gathers,
 )
 from kit_torch.torch_bridge import IRModule
+from mlopt_core.ir import IR, Op, Param, Var
+from mlopt_core.typing import (
+    INVALID,
+    broadcast,
+    matmul_shape,
+)
 
 from kit_carriers._shape import shape_of
 from kit_carriers.scan_fused import (

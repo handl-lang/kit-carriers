@@ -56,9 +56,9 @@ from __future__ import annotations
 from typing import Any, cast
 
 import torch
-from mlopt_core.ir import IR, Const, Op
 from kit_torch.executors import BatchedExecutorBase
 from kit_torch.torch_bridge import IRModule, eval_term
+from mlopt_core.ir import IR, Const, Op
 
 from kit_carriers._shape import shape_of as _shape_of
 from kit_carriers.om_lower import _slice_index, _sliced_gather

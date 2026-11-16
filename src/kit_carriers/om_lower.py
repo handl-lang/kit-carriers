@@ -48,13 +48,13 @@ from __future__ import annotations
 from typing import Any, TypeGuard, cast
 
 import torch
-from mlopt_core.ir import IR, Op, Param
 from kit_torch.executors import (
     BatchedExecutorBase,
     level_schedule,
     slot_gathers,
 )
 from kit_torch.torch_bridge import IRModule, _om_compose, _om_elem
+from mlopt_core.ir import IR, Op, Param
 
 from kit_carriers._shape import shape_of as _shape_of
 from kit_carriers.om_fused import fused_om_levels

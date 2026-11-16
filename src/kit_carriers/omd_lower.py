@@ -54,13 +54,13 @@ import math
 from typing import Any, TypeGuard, cast
 
 import torch
-from mlopt_core.ir import IR, Op
 from kit_torch.executors import (
     BatchedExecutorBase,
     level_schedule,
     slot_gathers,
 )
 from kit_torch.torch_bridge import _IR_TO_TORCH, IRModule
+from mlopt_core.ir import IR, Op
 
 # Still required for its op_def / _LeafRegistry registrations — the
 # omd_* / affd_* torch bindings are NOT seeded here anymore: they
