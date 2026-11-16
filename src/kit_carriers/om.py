@@ -1425,7 +1425,7 @@ SDPA_CAT_LAWS: list[Rewrite] = [
 #  decayed product's composition over key chunks is plain ``add`` —
 #  a monoid already in the vocabulary).  Its executor is the spelled
 #  body itself — a reference lowering, correct by construction; a
-#  fused kernel is codegen's problem (``mlopt_discovery.genkernel``),
+#  fused kernel is codegen's problem (``kit_discovery.genkernel``),
 #  not this declaration's.
 #
 #  The lift accepts exactly what torch would compute: the mul must

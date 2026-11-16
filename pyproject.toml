@@ -103,7 +103,7 @@ exclude_also = [
 # the declared dep closure.  Everything else in the mlopt family is
 # forbidden: the sibling backends (kit_onnx, kit_cuda,
 # mlopt_host_tensor), the domain/discovery/game layers
-# (mlopt_discovery/discoverykit, gamekit, benchkit), and the optional
+# (kit_discovery/discoverykit, gamekit, benchkit), and the optional
 # native engine.  The reverse edge (mlopt_torch → kit_carriers)
 # stays undeclared and lazy — a declared cycle is not installable —
 # and lives in graphopt's own contracts.  ``include_external_packages``
@@ -120,7 +120,7 @@ forbidden_modules = [
     "kit_onnx",
     "kit_cuda",
     "mlopt_host_tensor",
-    "mlopt_discovery",
+    "kit_discovery",
     "discoverykit",
     "gamekit",
     "benchkit",
