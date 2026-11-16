@@ -5,7 +5,7 @@ domain packages are absent:
 
 * ``OpTable.full()`` skips carrier modules that cannot be imported —
   a carrier's terms cannot exist without its package, so the skip is
-  semantically correct (e.g. a mlopt-core + mlopt-torch install);
+  semantically correct (e.g. a mlopt-core + kit-torch install);
 * the skip is NARROWED to the carrier module itself: an import error
   raised inside an installed carrier (a missing dependency, reported
   under a different module name) still propagates;
@@ -21,7 +21,7 @@ from types import SimpleNamespace
 import mlopt_core.ops as ops_mod
 import torch
 from mlopt_core.ops import OpTable
-from mlopt_torch.torch_bridge import _IR_TO_TORCH
+from kit_torch.torch_bridge import _IR_TO_TORCH
 
 _real_import_module = importlib.import_module
 

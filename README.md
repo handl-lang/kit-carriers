@@ -15,11 +15,11 @@ the `CARRIERS` rule-set composition (`OM_RULES`, `TRACE_RULES`,
 `XC_RULES`, `DECODE_RULES`, `DECODE_GEOM_RULES`).
 
 It is **not** a leaf: it sits in the mutually-dependent backend
-layer with `mlopt-torch` (the carrier law modules carry
+layer with `kit-torch` (the carrier law modules carry
 `TORCH_BINDINGS`; the torch sink builds its executor table from the
 carrier lowerings under a lazy import).  Substrate deps resolve
 from `handl-lang/eqsat` (`mlopt-core`, `mlopt-orchestrator`,
-`mlopt-dtypes`); `mlopt-torch` resolves from `handl-lang/graphopt`.
+`mlopt-dtypes`); `kit-torch` resolves from `handl-lang/graphopt`.
 
 ## Install
 

@@ -7,7 +7,7 @@ chunked attention over scanned values extracts as::
     omd_apply(<omd_compose tree of omd_elem(s_i, a_i, b_i)>, h0)
 
 — the whole of softmax attention as ONE map, affine in the initial
-scan state.  The generic :class:`~mlopt_torch.torch_bridge.IRModule`
+scan state.  The generic :class:`~kit_torch.torch_bridge.IRModule`
 evaluates the member correctly but *serially*: each leaf's coefficient
 maps ``a_i``/``b_i`` are ``stack(affd_a f_j)`` / ``stack(affd_b f_j)``
 over per-step compose chains — O(T²) unrolled nodes (or O(T) dispatched
@@ -55,12 +55,12 @@ from typing import Any, TypeGuard, cast
 
 import torch
 from mlopt_core.ir import IR, Op
-from mlopt_torch.executors import (
+from kit_torch.executors import (
     BatchedExecutorBase,
     level_schedule,
     slot_gathers,
 )
-from mlopt_torch.torch_bridge import _IR_TO_TORCH, IRModule
+from kit_torch.torch_bridge import _IR_TO_TORCH, IRModule
 
 # Still required for its op_def / _LeafRegistry registrations — the
 # omd_* / affd_* torch bindings are NOT seeded here anymore: they
@@ -575,7 +575,7 @@ class BatchedOmdModule(BatchedExecutorBase, torch.nn.Module):
         is wrapped in ``IR(root=term)`` (param discovery still works;
         single-input graphs resolve Vars against the argument).
     param_values : dict[str, torch.Tensor] | None
-        As for :func:`~mlopt_torch.torch_bridge.ir_to_torch_module`.
+        As for :func:`~kit_torch.torch_bridge.ir_to_torch_module`.
 
     Embeds a plain :class:`IRModule` (submodule ``eval_mod``) used for
     leaf/score/state evaluation and as the complete fallback when the

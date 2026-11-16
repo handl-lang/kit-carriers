@@ -11,18 +11,17 @@ requires-python = ">=3.11"
 dependencies = [
     "mlopt-core",
     "mlopt-orchestrator",
-    "mlopt-torch",
+    "kit-torch",
     "torch>=2.0",
 ]
 
 [dependency-groups]
 dev = [
-    # mlopt-torch is a runtime dep resolved by the *consumer's*
-    # [tool.uv.sources] (workspace member in graphopt, git subdir pin in
-    # mlopt/kernelopt) — dep sources are honored transitively and no
+    # kit-torch is a runtime dep resolved by the *consumer's*
+    # [tool.uv.sources] — dep sources are honored transitively and no
     # single pin fits all consumers, so this repo's own dev env binds it
     # here as a direct git dep instead of a [tool.uv.sources] entry.
-    "mlopt-torch @ git+https://github.com/handl-lang/graphopt.git@v0.1.21#subdirectory=packages/mlopt-torch",
+    "kit-torch @ git+https://github.com/handl-lang/kit-torch.git@v0.1.0",
     "pytest>=7.0",
     "ruff>=0.6",
     "coverage>=7.0",
@@ -99,12 +98,12 @@ exclude_also = [
 ]
 
 # import-linter: kit_carriers binds stdlib + torch + mlopt-core +
-# mlopt-orchestrator + mlopt-torch (+ mlopt-dtypes transitively) —
+# mlopt-orchestrator + kit-torch (+ mlopt-dtypes transitively) —
 # the declared dep closure.  Everything else in the mlopt family is
 # forbidden: the sibling backends (kit_onnx, kit_cuda,
 # mlopt_host_tensor/kit_host_tensor), the domain/discovery/game layers
 # (kit_discovery/discoverykit, gamekit, benchkit), and the optional
-# native engine.  The reverse edge (mlopt_torch → kit_carriers)
+# native engine.  The reverse edge (kit_torch → kit_carriers)
 # stays undeclared and lazy — a declared cycle is not installable —
 # and lives in graphopt's own contracts.  ``include_external_packages``
 # makes the torch bind visible to the contract.

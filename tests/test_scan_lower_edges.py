@@ -6,7 +6,7 @@ expand path.  CPU only; CUDA paths live in test_scan_batched.py."""
 
 import torch
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
-from mlopt_torch.torch_bridge import ir_to_torch_module
+from kit_torch.torch_bridge import ir_to_torch_module
 
 from kit_carriers.scan_lower import (
     _fold_nested_apply,

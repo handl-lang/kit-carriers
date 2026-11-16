@@ -41,8 +41,8 @@ from mlopt_core.cost import (
 )
 from mlopt_core.egraph import EGraph, verify_certificate
 from mlopt_core.ir import IR, Op, Param, TensorType, Var, op_repr
-from mlopt_torch.models.ssm import DiagDenseSSM, DiagonalSSM
-from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+from kit_torch.models.ssm import DiagDenseSSM, DiagonalSSM
+from kit_torch.torch_bridge import export_to_ir, ir_to_torch_module
 
 import kit_carriers.trace as cat_trace  # registers torch bindings
 import kit_carriers.trace_lift as TL

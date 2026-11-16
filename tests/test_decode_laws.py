@@ -20,7 +20,7 @@ import torch
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
-from mlopt_torch.torch_bridge import ir_to_torch_module
+from kit_torch.torch_bridge import ir_to_torch_module
 
 from kit_carriers.decode_laws import (
     DECODE_LAWS,
@@ -187,7 +187,7 @@ def test_kv_append_declines_at_egraph_level():
 def test_kv_append_from_exported_graph():
     """torch.export emits cat(slice(buf,0,n), new) — the law fires on
     the real boundary spelling, and the extracted write is exact."""
-    from mlopt_torch.torch_bridge import export_to_ir
+    from kit_torch.torch_bridge import export_to_ir
 
     class KVAppend(torch.nn.Module):
         def forward(self, buf, new):
@@ -622,7 +622,7 @@ def test_op_table_scope_limits():
     and the scatter family + index_select ARE the write/gather seam.
     ``repeat_interleave`` left the absent list when 98fcf84 bound it
     (the unbind had been minting opaque leaves)."""
-    import mlopt_torch.torch_bridge  # noqa: F401 — registers tables
+    import kit_torch.torch_bridge  # noqa: F401 — registers tables
     from mlopt_core.ops import OpTable
 
     names = set(OpTable.full().torch_bindings)
@@ -838,7 +838,7 @@ def test_attn_sdpa_bf16_numeric_boundary():
     a wrong ``scale`` would not), and ``verify_equiv`` applies the
     sub-fp32 ``8*eps`` rtol floor that makes the gate dtype-aware.
     """
-    from mlopt_torch.report import verify_equiv
+    from kit_torch.report import verify_equiv
 
     # whisper-turbo-ish self-attention spelling: pre-scaled q, the
     # post-matmul *1.0 Const, eval-dropout wrapper, no mask.

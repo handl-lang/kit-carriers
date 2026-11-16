@@ -15,8 +15,8 @@ from mlopt_core.ir import IR, Op, TensorType, Var
 from mlopt_core.laws import all_rules
 from mlopt_core.ops import OpTable
 from mlopt_orchestrator import Compositional, Optimizer
-from mlopt_torch.backend import TorchBackend
-from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+from kit_torch.backend import TorchBackend
+from kit_torch.torch_bridge import export_to_ir, ir_to_torch_module
 
 from kit_carriers.om_lower import (
     StreamingOMModule,

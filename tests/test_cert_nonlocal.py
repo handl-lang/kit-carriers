@@ -42,7 +42,7 @@ from mlopt_core.egraph import (
     verify_certificate,
 )
 from mlopt_core.ir import IR, Op, Param, TensorType, Var, op_repr
-from mlopt_torch.torch_bridge import ir_to_torch_module
+from kit_torch.torch_bridge import ir_to_torch_module
 
 import kit_carriers.trace as _cat_trace  # noqa: F401  torch bindings
 from kit_carriers.trace_lift import lift_scan_to_trace

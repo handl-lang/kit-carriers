@@ -1,7 +1,7 @@
 """Coverage wave-2 tests — model blocks plus the executor/traced
 lowering edge paths that the main suites deliberately leave open:
 
-* ``mlopt_torch.models`` — ``ResidualMLP``/``ParallelConv`` forwards and the
+* ``kit_torch.models`` — ``ResidualMLP``/``ParallelConv`` forwards and the
   analytic flop helpers, exercised on real tensors.
 * ``kit_carriers.scan_lower`` — the composition-level memo hit, non-zero-axis
   leaf gathers, and the graph-capture CPU behaviour.
@@ -18,7 +18,7 @@ import torch
 import torch.nn.functional as F
 from mlopt_core.egraph import EClass, EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
-from mlopt_torch.torch_bridge import ir_to_torch_module
+from kit_torch.torch_bridge import ir_to_torch_module
 
 import kit_carriers.trace_lift as TL
 from kit_carriers.om_lower import (
@@ -101,12 +101,12 @@ def _compose(opname, leaves):
 
 
 # ---------------------------------------------------------------------------
-#  mlopt_torch.models — real forwards for the never-instantiated blocks
+#  kit_torch.models — real forwards for the never-instantiated blocks
 # ---------------------------------------------------------------------------
 
 
 def test_residual_mlp_forward_matches_manual():
-    from mlopt_torch.models import ResidualMLP
+    from kit_torch.models import ResidualMLP
 
     torch.manual_seed(0)
     m = ResidualMLP(dim=8, hidden_mult=3).eval().double()
@@ -119,7 +119,7 @@ def test_residual_mlp_forward_matches_manual():
 
 
 def test_parallel_conv_forward_is_sum_of_branches():
-    from mlopt_torch.models import ParallelConv
+    from kit_torch.models import ParallelConv
 
     torch.manual_seed(0)
     m = ParallelConv(4, 8, branches=3, kernel=3).eval().double()
@@ -132,7 +132,7 @@ def test_parallel_conv_forward_is_sum_of_branches():
 
 
 def test_flop_helpers_match_formulas():
-    from mlopt_torch.models import MatrixChain, ParallelLinear
+    from kit_torch.models import MatrixChain, ParallelLinear
 
     assert ParallelLinear.flops((8, 4), 32) == 2 * 32 * 8 * 4
     dims = (16, 8, 4, 2)

@@ -8,7 +8,7 @@ runtime fallback counter.  CPU only."""
 import pytest
 import torch
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
-from mlopt_torch.torch_bridge import ir_to_torch_module
+from kit_torch.torch_bridge import ir_to_torch_module
 
 from kit_carriers.omd_lower import (
     BatchedOmdModule,

@@ -14,7 +14,7 @@ import pytest
 import torch
 from mlopt_core.ir import IR, Const, Op, Param, TensorType, Var
 from mlopt_core.ops import OpTable
-from mlopt_torch.torch_bridge import _IR_TO_TORCH, ir_to_torch_module
+from kit_torch.torch_bridge import _IR_TO_TORCH, ir_to_torch_module
 
 import kit_carriers.xcarrier  # noqa: F401 — carrier torch bindings
 

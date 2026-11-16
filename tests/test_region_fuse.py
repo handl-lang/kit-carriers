@@ -1,4 +1,4 @@
-"""``mlopt_torch.region_fuse`` — census, eligibility, rewrite, screening.
+"""``kit_torch.region_fuse`` — census, eligibility, rewrite, screening.
 
 Pins the delivery-time region fuser behind
 ``docs/reports/kokoro_region_fuse.md``: the elementwise-component
@@ -13,8 +13,8 @@ compiled tests stay minimal and marked where slow).
 
 import torch
 from mlopt_core.ir import IR, Const, Op, Param, TensorType, Var
-from mlopt_torch import region_fuse as rf
-from mlopt_torch.region_fuse import (
+from kit_torch import region_fuse as rf
+from kit_torch.region_fuse import (
     ELEMENTWISE_OPS,
     RegionFuseConfig,
     collect_regions,
@@ -22,8 +22,8 @@ from mlopt_torch.region_fuse import (
     region_census,
     rewrite_term,
 )
-from mlopt_torch.runners import RegionFusionRunner
-from mlopt_torch.torch_bridge import ir_to_torch_module
+from kit_torch.runners import RegionFusionRunner
+from kit_torch.torch_bridge import ir_to_torch_module
 
 import kit_carriers.xcarrier  # noqa: F401 — carrier torch bindings
 

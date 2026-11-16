@@ -34,7 +34,7 @@ Covered here:
   it *can* satisfy still emits.
 """
 
-import mlopt_torch  # noqa: F401 — registers the concrete-eval backend
+import kit_torch  # noqa: F401 — registers the concrete-eval backend
 import torch
 from mlopt_core import laws as R
 from mlopt_core import meta

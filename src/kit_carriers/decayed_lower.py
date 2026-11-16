@@ -10,7 +10,7 @@ retention extracts as a ``concat`` over per-chunk sums::
 scan: chunk *i*'s output gathers a masked intra-chunk attention
 element plus one decayed cross term per earlier block *j*.
 
-The generic :class:`~mlopt_torch.torch_bridge.IRModule` evaluates
+The generic :class:`~kit_torch.torch_bridge.IRModule` evaluates
 that term one op at a time: at K=8 chunks that is ~51 tiny batched
 matmuls, ~190 kernel launches, and every ``decay``/``decay_vec``
 generator re-materialised per forward.  The math is right — the
@@ -57,8 +57,8 @@ from typing import Any, cast
 
 import torch
 from mlopt_core.ir import IR, Const, Op
-from mlopt_torch.executors import BatchedExecutorBase
-from mlopt_torch.torch_bridge import IRModule, eval_term
+from kit_torch.executors import BatchedExecutorBase
+from kit_torch.torch_bridge import IRModule, eval_term
 
 from kit_carriers._shape import shape_of as _shape_of
 from kit_carriers.om_lower import _slice_index, _sliced_gather
@@ -387,7 +387,7 @@ class ChunkedDecayModule(BatchedExecutorBase, torch.nn.Module):
         The (post-extraction) IR to lower.
     param_values : dict[str, torch.Tensor] | None
         Mapping from IR param names to tensor values, as for
-        :func:`~mlopt_torch.torch_bridge.ir_to_torch_module`.
+        :func:`~kit_torch.torch_bridge.ir_to_torch_module`.
 
     The module embeds a plain :class:`IRModule` (as submodule
     ``eval_mod``) used for operand evaluation and as the complete

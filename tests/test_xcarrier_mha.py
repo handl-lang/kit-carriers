@@ -540,8 +540,8 @@ def test_mha_omd_fires_and_is_exact():
     the attention, so omd is NOT at the root — same as the chunked-MH
     variant).  The extracted member evaluates fp64-exact."""
     from mlopt_core.ir import IR
-    from mlopt_torch.regime import default_rules
-    from mlopt_torch.torch_bridge import (
+    from kit_torch.regime import default_rules
+    from kit_torch.torch_bridge import (
         export_to_ir,
         ir_to_torch_module,
     )
@@ -641,8 +641,8 @@ def test_mha_omd_value_member_is_viewed_apply():
     transpose/reshape view of the projected scan coefficients —
     rank-4 (nh,T,hd,D)."""
     from mlopt_core.cost import _shape_of
-    from mlopt_torch.regime import default_rules
-    from mlopt_torch.torch_bridge import export_to_ir
+    from kit_torch.regime import default_rules
+    from kit_torch.torch_bridge import export_to_ir
 
     from kit_carriers.xcarrier import (
         XC_LAWS,

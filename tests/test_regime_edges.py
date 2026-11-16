@@ -1,4 +1,4 @@
-"""Coverage-gap tests for mlopt_torch.regime.
+"""Coverage-gap tests for kit_torch.regime.
 
 Complements tests/test_regime.py with the paths it never reaches:
 
@@ -29,7 +29,7 @@ Complements tests/test_regime.py with the paths it never reaches:
 
 import types
 
-import mlopt_torch.calibrate as cal_mod
+import kit_torch.calibrate as cal_mod
 import pytest
 import torch
 import torch.nn as nn
@@ -41,8 +41,8 @@ from mlopt_core.cost import (
 )
 from mlopt_core.egraph import EGraph, verify_certificate
 from mlopt_core.ir import IR, Op, TensorType, Var, op_repr
-from mlopt_torch.models.ssm import DiagonalSSM
-from mlopt_torch.regime import (
+from kit_torch.models.ssm import DiagonalSSM
+from kit_torch.regime import (
     EXECUTORS,
     ExecutorSpec,
     Regime,
@@ -60,7 +60,7 @@ from mlopt_torch.regime import (
     regime_dispatch,
     regime_frontier,
 )
-from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+from kit_torch.torch_bridge import export_to_ir, ir_to_torch_module
 
 from kit_carriers.om import OM_LAWS
 from kit_carriers.om_lower import is_om_apply_term

@@ -14,13 +14,13 @@ cover the incremental decode regime: existing carrier + one new block
 import gc
 import math
 
-import mlopt_torch.torch_bridge as torch_bridge
+import kit_torch.torch_bridge as torch_bridge
 import pytest
 import torch
 import torch.nn.functional as F
 from mlopt_core.ir import IR, Op, TensorType, Var
-from mlopt_torch.models import SwiGLU
-from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+from kit_torch.models import SwiGLU
+from kit_torch.torch_bridge import export_to_ir, ir_to_torch_module
 
 import kit_carriers.om_lower as om_lower
 from kit_carriers.om_lower import (
@@ -519,7 +519,7 @@ def test_empty_state_is_identity():
     for a, b in zip(st_none, st_empty, strict=True):
         assert torch.equal(a, b)
     # composing the empty state on the RIGHT is also the identity
-    from mlopt_torch.torch_bridge import _om_compose
+    from kit_torch.torch_bridge import _om_compose
 
     st2 = _om_compose(
         st_none, om_empty_state((B, H, Tq), dv, dtype=torch.float64)

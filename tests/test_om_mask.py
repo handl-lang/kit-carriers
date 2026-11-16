@@ -28,7 +28,7 @@ import torch
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Const, Op, TensorType, Var, op_repr
-from mlopt_torch.torch_bridge import ir_to_torch_module
+from kit_torch.torch_bridge import ir_to_torch_module
 
 from kit_carriers.om import OM_LAWS, OM_MASK_LAWS
 

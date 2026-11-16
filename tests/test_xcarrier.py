@@ -53,7 +53,7 @@ import torch
 from mlopt_core import meta
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import Op, TensorType, Var
-from mlopt_torch.torch_bridge import _IR_TO_TORCH
+from kit_torch.torch_bridge import _IR_TO_TORCH
 
 import kit_carriers.xcarrier as XC
 
@@ -1074,8 +1074,8 @@ def test_scan_to_attention_lifts_into_omd_end_to_end():
     scanned values as ONE affine-in-h0 recurrence — and the member
     evaluates fp64-exact."""
     from mlopt_core.ir import IR
-    from mlopt_torch.regime import build_egraph
-    from mlopt_torch.torch_bridge import ir_to_torch_module
+    from kit_torch.regime import build_egraph
+    from kit_torch.torch_bridge import ir_to_torch_module
 
     torch.manual_seed(0)
     m = _ScanAttn(8, 8).eval().double()

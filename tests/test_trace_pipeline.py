@@ -1,5 +1,5 @@
 """Traced-monoidal carrier in the *pipeline* — regime saturation,
-frontier extraction, and executor dispatch (``mlopt_torch.regime``).
+frontier extraction, and executor dispatch (``kit_torch.regime``).
 
 ``tests/test_trace.py`` proves the JSV axioms as isolated rewrites.
 This file proves the pipeline-level story:
@@ -38,9 +38,9 @@ from mlopt_core import meta
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var, op_repr
-from mlopt_torch.models.hybrid import HybridBlock
-from mlopt_torch.models.ssm import DiagonalSSM
-from mlopt_torch.regime import (
+from kit_torch.models.hybrid import HybridBlock
+from kit_torch.models.ssm import DiagonalSSM
+from kit_torch.regime import (
     CARRIER_LAWS,
     EXECUTORS,
     Regime,
@@ -49,7 +49,7 @@ from mlopt_torch.regime import (
     regime_dispatch,
     regime_frontier,
 )
-from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+from kit_torch.torch_bridge import export_to_ir, ir_to_torch_module
 
 import kit_carriers.trace as cat_trace  # noqa: F401  (registers torch bindings)
 from kit_carriers.om import OM_LAWS
@@ -113,7 +113,7 @@ class TestTraceInPipeline:
         for r in TRACE_LAWS:
             assert r in CARRIER_LAWS, r.name
         # default_rules() (what build_egraph saturates with) carries them
-        from mlopt_torch.regime import default_rules
+        from kit_torch.regime import default_rules
 
         names = {r.name for r in default_rules()}
         assert {r.name for r in TRACE_LAWS} <= names

@@ -7,7 +7,7 @@ After eqsat with ``OM_LAWS`` (see :mod:`kit_carriers.om`), chunked attention
     om_apply(<om_compose tree over om_elem(s_i, v_i)>)
 
 — a FlashAttention schedule in tree form.  The generic
-:class:`~mlopt_torch.torch_bridge.IRModule` evaluates it serially by passing
+:class:`~kit_torch.torch_bridge.IRModule` evaluates it serially by passing
 ``(m, l, a)`` triples through the tree one node at a time: each
 ``om_elem`` is ~6 kernels (amax, sub, exp, sum, matmul, packaging) and
 each ``om_compose`` ~10 elementwise/where kernels.  The parallelism is
@@ -49,12 +49,12 @@ from typing import Any, TypeGuard, cast
 
 import torch
 from mlopt_core.ir import IR, Op, Param
-from mlopt_torch.executors import (
+from kit_torch.executors import (
     BatchedExecutorBase,
     level_schedule,
     slot_gathers,
 )
-from mlopt_torch.torch_bridge import IRModule, _om_compose, _om_elem
+from kit_torch.torch_bridge import IRModule, _om_compose, _om_elem
 
 from kit_carriers._shape import shape_of as _shape_of
 from kit_carriers.om_fused import fused_om_levels
@@ -502,7 +502,7 @@ class BatchedOMModule(BatchedExecutorBase, torch.nn.Module):
         The (post-extraction) IR to lower.
     param_values : dict[str, torch.Tensor] | None
         Mapping from IR param names to tensor values, as for
-        :func:`~mlopt_torch.torch_bridge.ir_to_torch_module`.
+        :func:`~kit_torch.torch_bridge.ir_to_torch_module`.
 
     The module embeds a plain :class:`IRModule` (as submodule
     ``eval_mod``) used both for leaf-operand evaluation and as the

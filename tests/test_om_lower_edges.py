@@ -502,7 +502,7 @@ def test_batched_short_sequence_and_properties():
 
 def _export_silu():
     import torch.nn as nn
-    from mlopt_torch.torch_bridge import export_to_ir
+    from kit_torch.torch_bridge import export_to_ir
 
     torch.manual_seed(0)
     m = nn.SiLU().eval()
@@ -592,6 +592,6 @@ def test_om_module_cached_and_repeat_idx():
 
 
 def ir_to_torch_module(ir, param_values=None):
-    from mlopt_torch.torch_bridge import ir_to_torch_module as _f
+    from kit_torch.torch_bridge import ir_to_torch_module as _f
 
     return _f(ir, param_values=param_values)

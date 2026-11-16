@@ -17,8 +17,8 @@ import torch
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, TensorType, Var, op_repr
-from mlopt_torch.models import SwiGLU
-from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+from kit_torch.models import SwiGLU
+from kit_torch.torch_bridge import export_to_ir, ir_to_torch_module
 
 from kit_carriers.om import OM_LAWS
 from kit_carriers.om_lower import (

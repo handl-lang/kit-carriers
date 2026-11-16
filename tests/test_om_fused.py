@@ -15,7 +15,7 @@ import torch
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
-from mlopt_torch.torch_bridge import ir_to_torch_module
+from kit_torch.torch_bridge import ir_to_torch_module
 
 import kit_carriers.xcarrier  # noqa: F401 — omd_* torch bindings
 from kit_carriers.om import OM_LAWS

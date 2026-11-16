@@ -49,7 +49,7 @@ from mlopt_core import laws as R
 from mlopt_core import meta
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var, op_repr
-from mlopt_torch.torch_bridge import (
+from kit_torch.torch_bridge import (
     _IR_TO_TORCH,
     export_to_ir,
     ir_to_torch_module,

@@ -33,7 +33,7 @@ dissolution; the `mlopt-*` → `kit-*` rename).  Python 3.13, torch +
 - `tests/` — the package-bound suite (the carrier/lowering/trace/
   decode-geometry files carved out of graphopt's `tests/` — every
   file whose imports stay inside this package's dep closure:
-  `kit_carriers` + `mlopt_core`/`mlopt_torch`/
+  `kit_carriers` + `mlopt_core`/`kit_torch`/
   `mlopt_orchestrator`/`mlopt_dtypes` + torch).  Cross-stack
   integration tests (anything touching `kit_discovery`,
   `kit_cuda`, `kit_host_tensor`/`mlopt_host_tensor`, `kit_onnx`,
@@ -42,17 +42,17 @@ dissolution; the `mlopt-*` → `kit-*` rename).  Python 3.13, torch +
 ## Contracts
 
 - **Mutually-dependent backend layer** — not a leaf: the carrier law
-  modules carry `TORCH_BINDINGS` and import `mlopt_torch`
-  (`torch_bridge`, `executors`); `mlopt_torch.adapters` resolves the
+  modules carry `TORCH_BINDINGS` and import `kit_torch`
+  (`torch_bridge`, `executors`); `kit_torch.adapters` resolves the
   carrier lowerings lazily under `ModuleNotFoundError` (the torch
   sink degrades to trace + generic without them).  The declared
   dependency runs one way (carriers → torch); the reverse edge stays
-  undeclared and lazy — do not add a `mlopt-torch → kit-carriers`
+  undeclared and lazy — do not add a `kit-torch → kit-carriers`
   dep (a declared cycle is not installable).
 - Substrate deps: `mlopt-core`, `mlopt-orchestrator`,
   `mlopt-dtypes` (handl-lang/eqsat, `packages/` subdirs,
-  tag-pinned); `mlopt-torch` (handl-lang/graphopt,
-  `packages/mlopt-torch` subdir, tag-pinned).
+  tag-pinned); `kit-torch` (handl-lang/graphopt,
+  `packages/kit-torch` subdir, tag-pinned).
 - `import kit_carriers` registers the carrier machinery with the
   orchestrator and must stay torch-safe at package import — the law
   modules resolve lazily through `__getattr__`.
@@ -81,8 +81,8 @@ coverage run -m pytest tests/ -q && coverage report -m   # floor in pyproject
   `kit_onnx` / `kit_cuda` / `kit_host_tensor`/`mlopt_host_tensor` /
   `kit_discovery`/`discoverykit` / `gamekit` / `benchkit` /
   `mlopt_native` — its binds stay inside stdlib + torch +
-  `mlopt_core`/`mlopt_orchestrator`/`mlopt_torch` (+ `mlopt_dtypes`
-  transitively).  The reverse edge (`mlopt_torch` → `kit_carriers`)
+  `mlopt_core`/`mlopt_orchestrator`/`kit_torch` (+ `mlopt_dtypes`
+  transitively).  The reverse edge (`kit_torch` → `kit_carriers`)
   stays undeclared and lazy by contract above — do not add the dep.
 
 <!-- myco:agent-awareness -->

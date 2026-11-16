@@ -149,7 +149,7 @@ def test_default_rules_composes_carriers():
 
 def test_composer_joint_rules():
     from mlopt_orchestrator.optimize import default_rules
-    from mlopt_torch.composer import _JOINT_DEFAULT, _joint_rules
+    from kit_torch.composer import _JOINT_DEFAULT, _joint_rules
 
     # the pipeline default widens to the layout-inclusive set.
     assert _joint_rules(None) is _JOINT_DEFAULT
@@ -194,8 +194,8 @@ def test_default_parity_with_legacy_all():
     """
     from mlopt_core.ir import op_repr
     from mlopt_orchestrator import search
-    from mlopt_torch.adapters import TorchSource
-    from mlopt_torch.torch_bridge import ir_to_torch_module
+    from kit_torch.adapters import TorchSource
+    from kit_torch.torch_bridge import ir_to_torch_module
 
     torch.manual_seed(0)
     m = _PairMLP().eval().double()
@@ -244,7 +244,7 @@ def test_default_parity_with_legacy_all():
 def test_full_ruleset_saturation_smoke():
     """The composed values drive ``EGraph.run`` / ``search`` directly."""
     from mlopt_orchestrator import search
-    from mlopt_torch.adapters import TorchSource
+    from kit_torch.adapters import TorchSource
 
     torch.manual_seed(0)
     m = nn.Linear(8, 8, bias=False).double()

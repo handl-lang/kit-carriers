@@ -14,8 +14,8 @@ CUDA-graph arm is marked ``requires_cuda``.
 import pytest
 import torch
 from mlopt_core.ir import IR, Const, Op, Param, TensorType, Var
-from mlopt_torch.adapters import TorchSink
-from mlopt_torch.torch_bridge import IRModule
+from kit_torch.adapters import TorchSink
+from kit_torch.torch_bridge import IRModule
 
 from kit_carriers.decayed_lower import (
     ChunkedDecayModule,

@@ -127,7 +127,7 @@ VERIFICATION
 Torch bindings for the new ops are declared in ``TORCH_BINDINGS`` at
 module level — an export :class:`mlopt_core.ops.OpTable` folds in via
 ``register``/``full()`` (plan 0001 phase 2c).  The torch binding table
-is not mutated at import: :data:`mlopt_torch.torch_bridge._IR_TO_TORCH`
+is not mutated at import: :data:`kit_torch.torch_bridge._IR_TO_TORCH`
 resolves the bindings lazily when a consumer actually reads them.  The
 one import-time side effect is a *push into core*: ``_xshape`` is
 registered (``mlopt_core.typing.register_value_shape``) as the

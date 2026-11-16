@@ -12,7 +12,7 @@ and the routing invariants (``is_batched``/``n_levels``/``_plan``).
 import pytest
 import torch
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
-from mlopt_torch.torch_bridge import ir_to_torch_module
+from kit_torch.torch_bridge import ir_to_torch_module
 
 from kit_carriers.scan_fused import (
     fused_dense_levels,

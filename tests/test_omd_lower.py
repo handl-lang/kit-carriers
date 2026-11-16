@@ -19,8 +19,8 @@ import torch
 from mlopt_core.cost import flops_cost
 from mlopt_core.egraph import EGraph
 from mlopt_core.ir import IR, Op, Param, TensorType, Var
-from mlopt_torch.regime import default_rules
-from mlopt_torch.torch_bridge import export_to_ir, ir_to_torch_module
+from kit_torch.regime import default_rules
+from kit_torch.torch_bridge import export_to_ir, ir_to_torch_module
 
 from kit_carriers.omd_lower import (
     BatchedOmdModule,
@@ -502,7 +502,7 @@ def test_scanattn_omd_member_end_to_end(T):
 
 def test_fallback_non_omd_root():
     """Non-omd IR: BatchedOmdModule delegates to serial evaluation."""
-    from mlopt_torch.models import SwiGLU
+    from kit_torch.models import SwiGLU
 
     torch.manual_seed(0)
     m = SwiGLU(16, hidden_mult=2).eval()

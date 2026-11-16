@@ -116,7 +116,7 @@ def test_build_omd_plan_dedups_equal_distinct_leaves():
 def test_eval_term_memo_dedups_twin_subtrees():
     # ``eval_term``'s memo is content-keyed: a twin subtree evaluates
     # through the same memo entry as a truly shared (interned) subtree.
-    from mlopt_torch.torch_bridge import eval_term
+    from kit_torch.torch_bridge import eval_term
 
     x = Var("x", _T(2, 3))
     w = Param("w", _T(3, 4))

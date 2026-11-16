@@ -23,8 +23,8 @@ from mlopt_core.ports import (
     Verifier,
     signature_conforms,
 )
-from mlopt_torch.report import VerifyReport, verify_equiv
-from mlopt_torch.torch_bridge import _IR_TO_TORCH, IRModule
+from kit_torch.report import VerifyReport, verify_equiv
+from kit_torch.torch_bridge import _IR_TO_TORCH, IRModule
 
 from kit_carriers.om_lower import (
     StreamingOMModule,
@@ -215,14 +215,14 @@ def test_verify_result_is_core_owned_and_satisfied_by_verify_report():
 
 
 def test_torch_source_is_source():
-    from mlopt_torch.adapters import TorchSource
+    from kit_torch.adapters import TorchSource
 
     assert isinstance(TorchSource(), Source)
     assert not isinstance(object(), Source)
 
 
 def test_torch_sink_is_sink():
-    from mlopt_torch.adapters import TorchSink
+    from kit_torch.adapters import TorchSink
 
     sink = TorchSink()
     assert isinstance(sink, Sink)

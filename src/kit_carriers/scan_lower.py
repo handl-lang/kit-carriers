@@ -6,7 +6,7 @@ After eqsat with ``SCAN_LAWS`` and a depth cost, an unrolled recurrence
     apply(<balanced aff_compose tree>, h0)
 
 —a Blelloch-style scan of depth ~2·log2(T).  The generic
-:class:`~mlopt_torch.torch_bridge.IRModule` evaluates ``aff``/``aff_compose``
+:class:`~kit_torch.torch_bridge.IRModule` evaluates ``aff``/``aff_compose``
 by passing ``(A, b)`` tuples through the tree one node at a time: the
 parallelism is in the graph but the schedule is serial.
 
@@ -48,12 +48,12 @@ from mlopt_core.typing import (
     broadcast,
     matmul_shape,
 )
-from mlopt_torch.executors import (
+from kit_torch.executors import (
     BatchedExecutorBase,
     level_schedule,
     slot_gathers,
 )
-from mlopt_torch.torch_bridge import IRModule
+from kit_torch.torch_bridge import IRModule
 
 from kit_carriers._shape import shape_of
 from kit_carriers.scan_fused import (
@@ -539,7 +539,7 @@ class BatchedScanModule(BatchedExecutorBase, torch.nn.Module):
         The (post-extraction) IR to lower.
     param_values : dict[str, torch.Tensor] | None
         Mapping from IR param names to tensor values, as for
-        :func:`~mlopt_torch.torch_bridge.ir_to_torch_module`.
+        :func:`~kit_torch.torch_bridge.ir_to_torch_module`.
 
     The module embeds a plain :class:`IRModule` (as submodule
     ``eval_mod``) used both for leaf/h evaluation and as the complete
