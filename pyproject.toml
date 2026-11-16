@@ -3,11 +3,73 @@ requires = ["setuptools>=68.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mlopt-carriers"
-version = "0.1.0dev"
-description = "Semantic carriers for mlopt (om/omd/scan/trace lifts and executors)."
+name = "kit-carriers"
+version = "0.1.0"
+description = "Semantic carriers for mlopt (om/omd/scan/trace lifts and executors). Split from handl-lang/graphopt packages/mlopt-carriers (P3 Step D-1b)."
+readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["mlopt-core", "mlopt-torch", "mlopt-orchestrator", "torch>=2.0"]
+dependencies = [
+    "mlopt-core",
+    "mlopt-orchestrator",
+    "mlopt-torch",
+    "torch>=2.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.6",
+    "coverage>=7.0",
+    "ty>=0.0.84",
+]
+
+# Substrate + torch-bridge pins for local dev — consumers that git-pin
+# `kit-carriers` resolve `mlopt-*` through their own `[tool.uv.sources]`
+# (uv honours sources only at the workspace root).
+[tool.uv.sources]
+mlopt-core = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-core", tag = "v0.1.8" }
+mlopt-orchestrator = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-orchestrator", tag = "v0.1.8" }
+mlopt-dtypes = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-dtypes", tag = "v0.1.8" }
+mlopt-torch = { git = "https://github.com/handl-lang/graphopt.git", subdirectory = "packages/mlopt-torch", tag = "v0.1.14" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "requires_cuda: test allocates CUDA tensors; skipped at setup when CUDA is absent or OOMs on a probe allocation",
+    "slow: minutes-scale test; iterate with -m \"not slow\", run the full suite before committing",
+    "e2e: crosses an external engine boundary (torch.compile/Inductor, CUDA-graph capture); module-level marker, tagged on boundary-purpose files only",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 72
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF", "D"]
+ignore = [
+    "E501",     # line length — math/notation lines exceed 72 legitimately
+    "B008",     # function-call in default arg — used for cost-fn defaults
+    "SIM108",   # ternary suggestion — if/else often clearer here
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+
+# --- typecheck (ty) -----------------------------------------------
+[tool.ty.environment]
+python-version = "3.13"
+
+[tool.ty.src]
+include = ["src"]
+exclude = []
+
+[tool.ty.terminal]
+error-on-warning = false
+
+[tool.coverage.run]
+source = ["kit_carriers"]
+branch = true
+omit = ["*/tests/*"]
