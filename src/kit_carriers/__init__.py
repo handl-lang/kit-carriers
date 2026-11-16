@@ -27,9 +27,23 @@ materialises **lazily**: the law modules import their backend
 
 from typing import Any
 
+from mlopt_core.ops import register_carrier
 from mlopt_orchestrator.carriers import register_carriers
 
 from kit_carriers.machinery import build_machinery
+
+# Seat the carrier modules on ``OpTable.full()``'s carrier list.  eqsat
+# v0.1.9+ names them in ``_CARRIER_MODULES`` already; registering here
+# too keeps ``OpTable.full()``/``carrier_torch_bindings()`` correct for
+# consumers still pinned to an older eqsat (``importlib`` caches the
+# module, so the overlap with the builtins is free).
+for _carrier_mod in (
+    "kit_carriers.trace",
+    "kit_carriers.xcarrier",
+    "kit_carriers.om",
+):
+    register_carrier(_carrier_mod)
+del _carrier_mod
 
 # Install the carrier machinery with the neutral orchestrator (the
 # edge inversion: carriers -> orchestrator, never the reverse).  The
