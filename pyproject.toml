@@ -30,7 +30,6 @@ dev = [
 mlopt-core = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-core", tag = "v0.1.9" }
 mlopt-orchestrator = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-orchestrator", tag = "v0.1.9" }
 mlopt-dtypes = { git = "https://github.com/handl-lang/eqsat.git", subdirectory = "packages/mlopt-dtypes", tag = "v0.1.9" }
-mlopt-torch = { git = "https://github.com/handl-lang/graphopt.git", subdirectory = "packages/mlopt-torch", tag = "v0.1.14" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
