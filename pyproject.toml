@@ -102,7 +102,7 @@ exclude_also = [
 # mlopt-orchestrator + mlopt-torch (+ mlopt-dtypes transitively) —
 # the declared dep closure.  Everything else in the mlopt family is
 # forbidden: the sibling backends (kit_onnx, kit_cuda,
-# mlopt_host_tensor), the domain/discovery/game layers
+# mlopt_host_tensor/kit_host_tensor), the domain/discovery/game layers
 # (kit_discovery/discoverykit, gamekit, benchkit), and the optional
 # native engine.  The reverse edge (mlopt_torch → kit_carriers)
 # stays undeclared and lazy — a declared cycle is not installable —
@@ -120,6 +120,7 @@ forbidden_modules = [
     "kit_onnx",
     "kit_cuda",
     "mlopt_host_tensor",
+    "kit_host_tensor",
     "kit_discovery",
     "discoverykit",
     "gamekit",
