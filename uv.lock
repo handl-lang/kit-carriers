@@ -272,6 +272,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "coverage" },
+    { name = "mlopt-torch" },
     { name = "pytest" },
     { name = "ruff" },
     { name = "ty" },
@@ -281,13 +282,14 @@ dev = [
 requires-dist = [
     { name = "mlopt-core", git = "https://github.com/handl-lang/eqsat.git?subdirectory=packages%2Fmlopt-core&tag=v0.1.9" },
     { name = "mlopt-orchestrator", git = "https://github.com/handl-lang/eqsat.git?subdirectory=packages%2Fmlopt-orchestrator&tag=v0.1.9" },
-    { name = "mlopt-torch", git = "https://github.com/handl-lang/graphopt.git?subdirectory=packages%2Fmlopt-torch&tag=v0.1.14" },
+    { name = "mlopt-torch" },
     { name = "torch", specifier = ">=2.0" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "coverage", specifier = ">=7.0" },
+    { name = "mlopt-torch", git = "https://github.com/handl-lang/graphopt.git?subdirectory=packages%2Fmlopt-torch&rev=v0.1.14" },
     { name = "pytest", specifier = ">=7.0" },
     { name = "ruff", specifier = ">=0.6" },
     { name = "ty", specifier = "==0.0.84" },
@@ -442,7 +444,7 @@ dependencies = [
 [[package]]
 name = "mlopt-torch"
 version = "0.1.0.dev0"
-source = { git = "https://github.com/handl-lang/graphopt.git?subdirectory=packages%2Fmlopt-torch&tag=v0.1.14#1ab7e433bbda9d2800a3a4c5fd1bb68d7c49adb8" }
+source = { git = "https://github.com/handl-lang/graphopt.git?subdirectory=packages%2Fmlopt-torch&rev=v0.1.14#1ab7e433bbda9d2800a3a4c5fd1bb68d7c49adb8" }
 dependencies = [
     { name = "mlopt-core" },
     { name = "mlopt-dtypes" },
