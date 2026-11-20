@@ -5,9 +5,7 @@ The semantic carriers for the mlopt game — online-softmax monoids
 affine scans (`scan_lower`), decayed carriers (`decayed_lower`),
 trace/traced-monoidal extensions (`trace`/`trace_lift`), and the
 carrier law families (`decode_laws`, `decode_geom`, `om_fused`,
-`scan_fused`, `machinery`).  Split out of `handl-lang/graphopt`
-(`packages/mlopt-carriers`) in P3 Step D-1b and renamed
-`mlopt-carriers` → `kit-carriers` / `mlopt_carriers` → `kit_carriers`.
+`scan_fused`, `machinery`).
 
 `kit_carriers` registers its machinery with the neutral orchestrator
 (`mlopt_orchestrator.carriers.register_carriers`) at import and owns
@@ -21,7 +19,7 @@ carrier lowerings under a lazy import).  Substrate deps resolve
 from `handl-lang/eqsat` (`mlopt-core`, `mlopt-orchestrator`,
 `mlopt-dtypes`); `kit-torch` resolves from `handl-lang/graphopt`.
 
-## Install
+## Develop
 
 ```sh
 uv sync --group dev
@@ -36,7 +34,12 @@ kit-carriers = { git = "https://github.com/handl-lang/kit-carriers.git", tag = "
 ## Verify
 
 ```sh
-.venv/bin/python -m pytest tests/ -q
-.venv/bin/ruff check src tests
-.venv/bin/ty check
+uv run scripts/gate.py --coverage   # pytest → ruff → ty → lint-imports → coverage floor
 ```
+
+`scripts/gate.py` is a stdlib runner over the dev toolchain; `ci.sh`
+is the gate entry.
+
+## License
+
+MIT.
