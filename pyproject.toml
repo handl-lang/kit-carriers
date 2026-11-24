@@ -22,7 +22,7 @@ dev = [
     # [tool.uv.sources] — dep sources are honored transitively and no
     # single pin fits all consumers, so this repo's own dev env binds it
     # here as a direct git dep instead of a [tool.uv.sources] entry.
-    "kit-torch @ git+https://github.com/handl-lang/kit-torch.git@v0.1.8",
+    "kit-torch @ git+https://github.com/handl-lang/mlopt-torch.git@v0.1.8",
     "pytest>=7.0",
     "ruff>=0.6",
     "coverage>=7.0",
