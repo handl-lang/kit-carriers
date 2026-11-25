@@ -51,8 +51,8 @@ dissolution; the `mlopt-*` → `kit-*` rename).  Python 3.13, torch +
   dep (a declared cycle is not installable).
 - Substrate deps: `mlopt-core`, `mlopt-orchestrator`,
   `mlopt-dtypes` (handl-lang/eqsat, `packages/` subdirs,
-  tag-pinned); `kit-torch` (handl-lang/graphopt,
-  `packages/kit-torch` subdir, tag-pinned).
+  tag-pinned); `kit-torch` (handl-lang/kit-torch,
+  tag-pinned).
 - `import kit_carriers` registers the carrier machinery with the
   orchestrator and must stay torch-safe at package import — the law
   modules resolve lazily through `__getattr__`.

@@ -1,4 +1,4 @@
-# bupha.toml — committed CI manifest for handl-lang/mlopt-carriers.
+# bupha.toml — committed CI manifest for handl-lang/kit-carriers.
 #
 # The gate is the peregrin campaign in workflows/gate.yaml — ci.sh is
 # retired fleet-wide, so the runner executes the campaign in the pushed
@@ -7,8 +7,8 @@
 # watcher (~/.config/bupha/bupha.toml) or run:
 # bupha watch --config bupha.toml
 [[repos]]
-name = "handl-lang/mlopt-carriers"
-dir = "~/GitHub/handl-lang/mlopt-carriers"
+name = "handl-lang/kit-carriers"
+dir = "~/GitHub/handl-lang/kit-carriers"
 branch = "refs/heads/main"
   [repos.runner]
   kind = "script"
