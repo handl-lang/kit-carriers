@@ -101,9 +101,9 @@ exclude_also = [
 # import-linter: kit_carriers binds stdlib + torch + mlopt-core +
 # mlopt-orchestrator + kit-torch (+ mlopt-dtypes transitively) —
 # the declared dep closure.  Everything else in the mlopt family is
-# forbidden: the sibling backends (kit_onnx, kit_cuda,
-# mlopt_host_tensor/kit_host_tensor), the domain/discovery/game layers
-# (kit_discovery/discoverykit, gamekit, benchkit), and the optional
+# forbidden: the sibling backends (kit_onnx, kit_cuda), the
+# domain/discovery/game layers (kit_discovery/discoverykit, gamekit,
+# benchkit), and the optional
 # native engine.  The reverse edge (kit_torch → kit_carriers)
 # stays undeclared and lazy — a declared cycle is not installable —
 # and lives in graphopt's own contracts.  ``include_external_packages``
@@ -119,8 +119,6 @@ source_modules = ["kit_carriers"]
 forbidden_modules = [
     "kit_onnx",
     "kit_cuda",
-    "mlopt_host_tensor",
-    "kit_host_tensor",
     "kit_discovery",
     "discoverykit",
     "gamekit",

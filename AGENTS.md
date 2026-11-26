@@ -78,7 +78,7 @@ coverage run -m pytest tests/ -q && coverage report -m   # floor in pyproject
   through graphopt's suite via the git dep).  Tighten, never lower.
 - The declared-dep-closure layering is enforced statically by the
   import-linter `forbidden` contract: `kit_carriers` must not import
-  `kit_onnx` / `kit_cuda` / `kit_host_tensor`/`mlopt_host_tensor` /
+  `kit_onnx` / `kit_cuda` /
   `kit_discovery`/`discoverykit` / `gamekit` / `benchkit` /
   `mlopt_native` — its binds stay inside stdlib + torch +
   `mlopt_core`/`mlopt_orchestrator`/`kit_torch` (+ `mlopt_dtypes`
